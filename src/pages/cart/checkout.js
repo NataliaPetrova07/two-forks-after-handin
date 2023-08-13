@@ -10,24 +10,30 @@ import checkmark from "@/assets/checkmark.svg";
 import Image from "next/image";
 import PaymentForm from "./card";
 
+export const regularticketnames = [];
+
 function RegularTicketInput() {
   const state = useContext(StoreContext);
   const { basket } = state;
 
   const renderInputFields = () => {
+    const regularticketnames = [];
     return basket.map((item) => {
-      const inputFields = [];
+      const regularInputFields = [];
       if (item.name === "Regular") {
         for (let i = 0; i < item.quantity; i++) {
-          inputFields.push(
+          const handleChange = (event) => {
+            regularticketnames[i] = event.target.value;
+          };
+          regularInputFields.push(
             <div className={styles.formField} key={i} index={i}>
-              <label htmlFor="regularticketname">Full Name</label>
-              <input required type="text" name="regularticketname" id="regularticketname" />
+              <label htmlFor={`regularticketname_${i}`}>Full Name</label>
+              <input required type="text" name={`regularticketname_${i}`} id={`regularticketname_${i}`} onChange={handleChange} />
             </div>
           );
         }
       }
-      return inputFields;
+      return regularInputFields;
     });
   };
   return <div>{renderInputFields()}</div>;
@@ -38,10 +44,10 @@ function VIPTicketInput() {
   const { basket } = state;
   const renderInputFields = () => {
     return basket.map((item) => {
-      const inputFields = [];
+      const vipInputFields = [];
       if (item.name === "VIP") {
         for (let i = 0; i < item.quantity; i++) {
-          inputFields.push(
+          vipInputFields.push(
             <div className={styles.formField} key={i} index={i}>
               <label htmlFor="vipticketname">Full Name</label>
               <input required type="text" name="vipticketname" id="vipticketname" />
@@ -49,7 +55,7 @@ function VIPTicketInput() {
           );
         }
       }
-      return inputFields;
+      return vipInputFields;
     });
   };
   return <div>{renderInputFields()}</div>;
@@ -107,8 +113,8 @@ function CheckoutForm(props) {
     e.preventDefault();
     const payload = {
       billing_name: theForm.current.elements.billing_name.value,
-      // vipticketname: vipticketname,
-      // regularticketname: regularticketname,
+      // vipticketnames: vipticketnames,
+      regularticketnames: regularticketnames,
       email: theForm.current.elements.email.value,
       address: theForm.current.elements.street.value,
       zip: theForm.current.elements.zip.value,
