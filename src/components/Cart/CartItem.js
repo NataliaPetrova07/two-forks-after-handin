@@ -10,11 +10,7 @@ function CartItem(props) {
   } else {
     isTicket = false;
   }
-  return (
-    <li className={styles.cartLi}>
-      <div>{isTicket ? <TicketItem {...props} /> : <TentItem {...props} />}</div>
-    </li>
-  );
+  return <li className={styles.cartLi}>{isTicket ? <TicketItem {...props} /> : <TentItem {...props} />}</li>;
 }
 
 export default CartItem;

@@ -1,9 +1,7 @@
 import Head from "next/head";
 import { Hero } from "@/components/Hero/Hero";
-import { useState } from "react";
 import { useContext } from "react";
 import { StoreContext } from "@/contexts/storeContext";
-import { DispatchContext } from "@/contexts/storeContext";
 import CartItem from "@/components/Cart/CartItem";
 import Anchor from "@/components/Anchor";
 import styles from "./Cart.module.css";

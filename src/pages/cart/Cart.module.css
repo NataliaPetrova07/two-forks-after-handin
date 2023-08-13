@@ -13,14 +13,6 @@
   gap: 1rem;
   margin-bottom: 6rem;
 }
-@media screen and (max-width: 850px) {
-  .checkoutwrapper {
-    display: block;
-  }
-  .checkoutwrapper form {
-    margin-bottom: 2rem;
-  }
-}
 .checkoutwrapper fieldset {
   border: 1px solid #9595d1;
   padding: 1rem;
@@ -99,4 +91,28 @@
 }
 .formField {
   display: grid;
+}
+@media screen and (max-width: 850px) {
+  .checkoutwrapper {
+    grid-template-columns: 1fr;
+    font-size: smaller;
+  }
+  .checkoutwrapper form {
+    margin-bottom: 2rem;
+  }
+  .card .cvcLabel,
+  .card .cvcNumber,
+  .card .expiry {
+    min-width: 90px;
+  }
+  .card {
+    column-gap: 5px;
+  }
+  .formcontrol,
+  .checkoutCart {
+    padding: 0 10px 25px 10px;
+  }
+  .checkoutCart {
+    order: -1;
+  }
 }

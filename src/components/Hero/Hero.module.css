@@ -4,3 +4,9 @@
   margin: 6rem 0;
   text-align: center;
 }
+@media screen and (max-width: 850px) {
+  .headline {
+    font-size: 3rem;
+    margin: 3rem 0;
+  }
+}

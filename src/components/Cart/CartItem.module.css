@@ -29,11 +29,23 @@
   text-align: end;
 }
 .cartItemMultiple {
-  grid-template-columns: 1fr 1fr 24px 24px 1fr 24px;
+  grid-template-columns: 2fr 1fr 24px 24px 1fr 24px;
 }
 .cartLi {
   list-style: none;
 }
 .formField {
   display: grid;
+}
+@media screen and (max-width: 550px) {
+  .cartLi {
+    font-size: smaller;
+  }
+  .cartItemMultiple {
+    grid-template-columns: 3fr 24px 24px 24px 2fr 24px;
+  }
+  .cartItem,
+  .cartItemMultiple {
+    gap: 5px;
+  }
 }

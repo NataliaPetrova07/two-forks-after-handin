@@ -19,9 +19,11 @@ function CartItemCheckout(props) {
           {props.quantity2 ? <p> {props.quantity2}x tent for 2 </p> : null}
           {props.quantity3 ? <p> {props.quantity3}x tent for 3 </p> : null}
         </div>
-        {props.quantity ? <p className={styles.cartItemPrice}>{props.quantity * props.price},-DKK</p> : null}
-        {props.quantity2 ? <p className={styles.cartItemPrice}>{props.quantity2 * props.price2},-DKK</p> : null}
-        {props.quantity3 ? <p className={styles.cartItemPrice}>{props.quantity3 * props.price3},-DKK</p> : null}
+        <div>
+          {props.quantity ? <p className={styles.cartItemPrice}>{props.quantity * props.price},-DKK</p> : null}
+          {props.quantity2 ? <p className={styles.cartItemPrice}>{props.quantity2 * props.price2},-DKK</p> : null}
+          {props.quantity3 ? <p className={styles.cartItemPrice}>{props.quantity3 * props.price3},-DKK</p> : null}
+        </div>
       </div>
     </li>
   );

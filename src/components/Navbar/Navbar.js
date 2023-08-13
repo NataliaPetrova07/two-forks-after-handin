@@ -32,14 +32,11 @@ export function Navbar() {
       <Anchor href="/" aria-label="Foofest">
         <Image src={logo.src} width={118} height={20} alt="foofest logo" priority />
       </Anchor>
-      <Anchor className="navlink" href="#">
+      <Anchor className="navlink" href="../program">
         Program
       </Anchor>
-      <Anchor className="navlink" href="#">
-        About
-      </Anchor>
-      <Anchor className="navlink" href="#">
-        Press
+      <Anchor className="navlink" href="../tickets">
+        Tickets
       </Anchor>
       <Anchor className="yellowbutton" href="../cart">
         Cart: {totalPlusFee}

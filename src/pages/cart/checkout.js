@@ -102,7 +102,6 @@ function CheckoutForm() {
       }),
     });
     const order = await res.json();
-    console.log("regularticketnames:", regularticketnames);
     console.log("order:", order);
   }
 
