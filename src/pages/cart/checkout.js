@@ -10,58 +10,7 @@ import checkmark from "@/assets/checkmark.svg";
 import Image from "next/image";
 import PaymentForm from "./card";
 
-export const regularticketnames = [];
-
-function RegularTicketInput() {
-  const state = useContext(StoreContext);
-  const { basket } = state;
-
-  const renderInputFields = () => {
-    const regularticketnames = [];
-    return basket.map((item) => {
-      const regularInputFields = [];
-      if (item.name === "Regular") {
-        for (let i = 0; i < item.quantity; i++) {
-          const handleChange = (event) => {
-            regularticketnames[i] = event.target.value;
-          };
-          regularInputFields.push(
-            <div className={styles.formField} key={i} index={i}>
-              <label htmlFor={`regularticketname_${i}`}>Full Name</label>
-              <input required type="text" name={`regularticketname_${i}`} id={`regularticketname_${i}`} onChange={handleChange} />
-            </div>
-          );
-        }
-      }
-      return regularInputFields;
-    });
-  };
-  return <div>{renderInputFields()}</div>;
-}
-
-function VIPTicketInput() {
-  const state = useContext(StoreContext);
-  const { basket } = state;
-  const renderInputFields = () => {
-    return basket.map((item) => {
-      const vipInputFields = [];
-      if (item.name === "VIP") {
-        for (let i = 0; i < item.quantity; i++) {
-          vipInputFields.push(
-            <div className={styles.formField} key={i} index={i}>
-              <label htmlFor="vipticketname">Full Name</label>
-              <input required type="text" name="vipticketname" id="vipticketname" />
-            </div>
-          );
-        }
-      }
-      return vipInputFields;
-    });
-  };
-  return <div>{renderInputFields()}</div>;
-}
-
-function CheckoutForm(props) {
+function CheckoutForm() {
   const state = useContext(StoreContext);
   const theForm = useRef(null);
   const { basket } = state;
@@ -70,6 +19,54 @@ function CheckoutForm(props) {
   const isRegularIncluded = basket.some((item) => item.name === "Regular");
   const isVIPIncluded = basket.some((item) => item.name === "VIP");
   let idValue;
+  let regularticketnames = [];
+  let vipticketnames = [];
+
+  function RegularTicketInput() {
+    const renderInputFields = () => {
+      return basket.map((item) => {
+        const regularInputFields = [];
+        if (item.name === "Regular") {
+          for (let i = 0; i < item.quantity; i++) {
+            const handleChange = (event) => {
+              regularticketnames[i] = event.target.value;
+            };
+            regularInputFields.push(
+              <div className={styles.formField} key={i} index={i}>
+                <label htmlFor={`regularticketname_${i}`}>Full Name</label>
+                <input required type="text" name={`regularticketname_${i}`} id={`regularticketname_${i}`} onChange={handleChange} />
+              </div>
+            );
+          }
+        }
+        return regularInputFields;
+      });
+    };
+    return <div>{renderInputFields()}</div>;
+  }
+
+  function VIPTicketInput() {
+    const renderInputFields = () => {
+      return basket.map((item) => {
+        const vipInputFields = [];
+        if (item.name === "VIP") {
+          for (let i = 0; i < item.quantity; i++) {
+            const handleChange = (event) => {
+              vipticketnames[i] = event.target.value;
+            };
+            vipInputFields.push(
+              <div className={styles.formField} key={i} index={i}>
+                <label htmlFor={`vipticketname_${i}`}>Full Name</label>
+                <input required type="text" name={`vipticketname_${i}`} id={`vipticketname_${i}`} onChange={handleChange} />
+              </div>
+            );
+          }
+        }
+        return vipInputFields;
+      });
+    };
+    return <div>{renderInputFields()}</div>;
+  }
 
   for (const item of basket) {
     if (item.id !== undefined) {
@@ -105,6 +102,7 @@ function CheckoutForm(props) {
       }),
     });
     const order = await res.json();
+    console.log("regularticketnames:", regularticketnames);
     console.log("order:", order);
   }
 
@@ -113,7 +111,7 @@ function CheckoutForm(props) {
     e.preventDefault();
     const payload = {
       billing_name: theForm.current.elements.billing_name.value,
-      // vipticketnames: vipticketnames,
+      vipticketnames: vipticketnames,
       regularticketnames: regularticketnames,
       email: theForm.current.elements.email.value,
       address: theForm.current.elements.street.value,
