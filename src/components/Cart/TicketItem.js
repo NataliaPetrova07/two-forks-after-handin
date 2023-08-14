@@ -6,6 +6,13 @@ import styles from "./CartItem.module.css";
 function TicketItem(props) {
   const dispatch = useContext(DispatchContext);
   const totalPrice = props.price * props.quantity;
+
+  const priceFormatter = new Intl.NumberFormat("da-DK", {
+    currency: "DKK",
+    style: "currency",
+    maximumFractionDigits: 0,
+  });
+
   function deleteOne() {
     dispatch({
       action: "REMOVE_TICKET",
@@ -54,7 +61,7 @@ function TicketItem(props) {
       ) : (
         <div></div>
       )}
-      <p className={styles.cartItemPrice}>{totalPrice},-DKK</p>
+      <p className={styles.cartItemPrice}>{priceFormatter.format(totalPrice)}</p>
       <button className={styles.cartButton} onClick={deleteOne}>
         <DeleteOutlined style={{ fontSize: "24px", color: "#2b164e" }} />
       </button>

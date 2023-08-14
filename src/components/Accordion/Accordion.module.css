@@ -48,6 +48,7 @@
 .flex button {
   margin-left: auto;
   margin-top: 2rem;
+  font-size: 0.9rem;
 }
 @media screen and (max-width: 550px) {
   .item {

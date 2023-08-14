@@ -11,6 +11,7 @@
   --yellow-hover: #eaa90b;
   --white: #fff;
   --black: #000;
+  --transition: 0.2s ease-in-out;
 }
 
 *,
@@ -21,7 +22,9 @@
   border-style: solid;
   border-color: currentColor;
 }
-
+*:focus {
+  outline: none !important;
+}
 body,
 html {
   margin: 0;
@@ -47,11 +50,14 @@ ul {
 }
 /* BUTTONS */
 .yellowbutton,
-.greenbutton {
-  padding: 15px 30px;
+.greenbutton,
+.greenbuttonOutline {
+  padding: 12px 20px;
   border-radius: 50px;
   cursor: pointer;
   text-decoration: none;
+  transition: var(--transition);
+  font-size: 1.1rem;
 }
 .yellowbutton {
   color: var(--dark-purple);
@@ -59,15 +65,28 @@ ul {
 }
 .yellowbutton:hover {
   background-color: var(--yellow-hover);
+  transition: var(--transition);
 }
 .greenbutton {
   color: white;
   background-color: var(--green);
-  font-size: 1.2rem;
   text-align: center;
+  transition: var(--transition);
+}
+.greenbuttonOutline {
+  color: var(--green);
+  background-color: transparent;
+  text-align: center;
+  transition: var(--transition);
+  border: 2px solid var(--green);
+}
+.greenbuttonOutline:hover {
+  background-color: var(--white);
+  transition: var(--transition);
 }
 .greenbutton:hover {
   background-color: var(--green-hover);
+  transition: var(--transition);
 }
 
 .navlink {
@@ -79,8 +98,8 @@ ul {
 }
 .cartBookingFee,
 .checkoutBookingFee {
-  border-bottom: 1px solid #2b164e;
-  border-top: 1px solid #2b164e29;
+  border-bottom: 1px solid var(--light-purple);
+  border-top: 1px solid var(--light-purple-hover);
   list-style: none;
   text-align: end;
   padding: 0.5rem 0rem 0.5rem 0rem;

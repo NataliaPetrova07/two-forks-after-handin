@@ -16,7 +16,6 @@ function TentAccordion(props) {
   let totalPrice = tentFor2quantity * props.price2 + tentFor3quantity * props.price3;
   let ticketQuantity = 0;
   let totalTentQuantity = tentFor2quantity + tentFor3quantity;
-
   async function reserveSpot() {
     const res = await fetch("https://blush-entertaining-raver.glitch.me/" + "reserve-spot", {
       method: "PUT",
@@ -139,7 +138,7 @@ function TentAccordion(props) {
         <div className={styles.content}>
           {props.description}
           <div className={styles.itemQuantity}>
-            <h4>2 person tent: {props.price2},- DKK</h4>
+            <h4>2 person tent: {props.price2}</h4>
             <button onClick={decrement2Quantity}>
               <MinusSquareOutlined style={{ fontSize: "32px", color: "#2b164e" }} />
             </button>
@@ -149,7 +148,7 @@ function TentAccordion(props) {
             </button>
           </div>
           <div className={styles.itemQuantity}>
-            <h4>3 person tent: {props.price3},- DKK</h4>
+            <h4>3 person tent: {props.price3}</h4>
             <button onClick={decrement3Quantity}>
               <MinusSquareOutlined style={{ fontSize: "32px", color: "#2b164e" }} />
             </button>
@@ -159,7 +158,7 @@ function TentAccordion(props) {
             </button>
           </div>
           <div className={styles.flex}>
-            <h4>Total Price: {totalPrice} ,- DKK</h4>
+            <h4>Total Price: {totalPrice}</h4>
             <button className="yellowbutton" onClick={addToBasket} disabled={totalPrice === 0}>
               add to cart
             </button>

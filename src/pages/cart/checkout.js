@@ -22,6 +22,12 @@ function CheckoutForm() {
   let regularticketnames = [];
   let vipticketnames = [];
 
+  const priceFormatter = new Intl.NumberFormat("da-DK", {
+    currency: "DKK",
+    style: "currency",
+    maximumFractionDigits: 0,
+  });
+
   function RegularTicketInput() {
     const renderInputFields = () => {
       return basket.map((item) => {
@@ -195,8 +201,8 @@ function CheckoutForm() {
                 {basket.map((item) => {
                   return <CartItemCheckout {...item} key={item.name} />;
                 })}
-                <li className="checkoutBookingFee">Booking fee: {bookingFee},- DKK</li>
-                <li className="checkoutTotal">Total: {totalPlusFee},- DKK</li>
+                <li className="checkoutBookingFee">Booking fee: {priceFormatter.format(bookingFee)}</li>
+                <li className="checkoutTotal">Total: {priceFormatter.format(totalPlusFee)}</li>
               </ul>
               <Anchor className="greenbutton" href="../cart">
                 Edit Cart

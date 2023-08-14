@@ -6,6 +6,12 @@ import { StoreContext } from "@/contexts/storeContext";
 import Image from "next/image";
 
 export function Navbar() {
+  const priceFormatter = new Intl.NumberFormat("da-DK", {
+    currency: "DKK",
+    style: "currency",
+    maximumFractionDigits: 0,
+  });
+
   const state = useContext(StoreContext);
   const { basket } = state;
   let bookingFee = 99;
@@ -25,7 +31,7 @@ export function Navbar() {
   }
   let totalPlusFee = 0;
   if (total > 0) {
-    totalPlusFee = `${total + bookingFee} ,- DKK`;
+    totalPlusFee = total + bookingFee;
   }
   return (
     <nav className={styles.navbar}>
@@ -39,7 +45,7 @@ export function Navbar() {
         Tickets
       </Anchor>
       <Anchor className="yellowbutton" href="../cart">
-        Cart: {totalPlusFee}
+        Cart: {priceFormatter.format(totalPlusFee)}
       </Anchor>
     </nav>
   );

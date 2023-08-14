@@ -1,0 +1,12 @@
+.Homepage {
+  min-height: 80vh;
+}
+.bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+
+.Homepage h1 {
+  font-size: 5rem;
+}

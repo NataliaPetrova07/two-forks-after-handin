@@ -14,7 +14,7 @@
   margin-bottom: 6rem;
 }
 .checkoutwrapper fieldset {
-  border: 1px solid #9595d1;
+  border: 1px solid var(--light-purple-hover);
   padding: 1rem;
   margin-bottom: 1rem;
   border-radius: 3px;
@@ -24,7 +24,7 @@
   font-weight: bold;
 }
 .checkoutwrapper input {
-  border: 1px solid #9595d1;
+  border: 1px solid var(--light-purple-hover);
   background-color: var(--light-pink);
   border-radius: 3px;
   margin: 5px 0;
@@ -74,6 +74,20 @@
 }
 .card input {
   grid-column: 1 / 3;
+}
+.checkoutwrapper input:focus,
+.card input:focus {
+  background-color: var(--white);
+  transition: var(--transition);
+  border: 1px solid var(--light-purple);
+}
+.checkoutwrapper input:hover,
+.card input:hover {
+  background-color: var(--white);
+  transition: var(--transition);
+}
+.Cart {
+  min-height: 70vh;
 }
 .card .expiry {
   grid-column: 1/2;

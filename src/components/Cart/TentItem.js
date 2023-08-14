@@ -12,6 +12,11 @@ function TentItem(props) {
   let ticketQuantity = 0;
   let tentFor2quantity = 0;
   let tentFor3quantity = 0;
+  const priceFormatter = new Intl.NumberFormat("da-DK", {
+    currency: "DKK",
+    style: "currency",
+    maximumFractionDigits: 0,
+  });
   if (props.quantity) {
   }
   if (props.quantity2) {
@@ -138,7 +143,7 @@ function TentItem(props) {
           <button className={styles.cartButton} onClick={addTentFor2}>
             <PlusSquareOutlined style={{ fontSize: "24px", color: "#2b164e" }} />
           </button>
-          <p className={styles.cartItemPrice}>{props.quantity2 * props.price2},-DKK</p>
+          <p className={styles.cartItemPrice}>{priceFormatter.format(props.quantity2 * props.price2)}</p>
           <button className={styles.cartButton} onClick={deleteTentFor2}>
             <DeleteOutlined style={{ fontSize: "24px", color: "#2b164e" }} />
           </button>
@@ -154,7 +159,7 @@ function TentItem(props) {
           <button className={styles.cartButton} onClick={addTentFor3}>
             <PlusSquareOutlined style={{ fontSize: "24px", color: "#2b164e" }} />
           </button>
-          <p className={styles.cartItemPrice}>{props.quantity3 * props.price3},-DKK</p>
+          <p className={styles.cartItemPrice}>{priceFormatter.format(props.quantity3 * props.price3)}</p>
           <button className={styles.cartButton} onClick={deleteTentFor3}>
             <DeleteOutlined style={{ fontSize: "24px", color: "#2b164e" }} />
           </button>
