@@ -1,27 +1,33 @@
 import Head from "next/head";
-import logo from "@/assets/foofest-logo.svg";
-import backgroundgraphics from "@/assets/background-graphics.svg";
-import Image from "next/image";
+import bg from "@/assets/background.svg";
 import styles from "@/styles/Home.module.css";
+import Anchor from "@/components/Anchor";
+import Circle from "@/components/Circle";
 
-export default function Home({ data }) {
-  //console.log(data);
+export default function Home() {
   return (
     <>
       <Head>
         <title>Foofest</title>
       </Head>
-      <div className={styles.Homepage}>
-        <div
-          className="bg"
-          style={{
-            backgroundImage: `url(${backgroundgraphics.src})`,
-            width: "100%",
-            height: "100%",
-          }}
-        >
+      <div
+        className={styles.bg}
+        style={{
+          backgroundImage: `url(${bg.src})`,
+        }}
+      ></div>
+      <Circle />
+      <div className="wrapper">
+        <div className={styles.Homepage}>
           <h1>kid and family friendly Japanese Jazz Fusion Music Festival</h1>
-          <Image src={logo.src} width={236} height={40} alt="foofest logo" priority />
+          <div className={styles.buttons}>
+            <Anchor className="greenbutton" href="../program">
+              Program
+            </Anchor>
+            <Anchor className="greenbutton" href="../tickets">
+              Tickets
+            </Anchor>
+          </div>
         </div>
       </div>
     </>

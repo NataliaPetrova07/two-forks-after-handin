@@ -131,3 +131,6 @@ ul {
 .ReactCollapse--collapse {
   transition: height 500ms;
 }
+.circle-container {
+  position: absolute;
+}

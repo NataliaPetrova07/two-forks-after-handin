@@ -37,35 +37,37 @@ export default function Cart() {
         <title>Cart</title>
       </Head>
       <Hero title="Cart" />
-      {state.basket.length > 0 ? (
-        <div className={styles.Cart}>
-          <ul className={styles.cartUl}>
-            {state.basket.map((item) => {
-              return <CartItem {...item} key={item.name} />;
-            })}
-            <li className="cartBookingFee">Booking fee: {priceFormatter.format(bookingFee)}</li>
-            <li className="cartTotal">
-              Total:
-              {priceFormatter.format(total + bookingFee)}
-            </li>
-          </ul>
-          <div className={styles.cartButtons}>
-            <Anchor className="greenbuttonOutline" href="../tickets">
+      <div className="wrapper">
+        {state.basket.length > 0 ? (
+          <div className={styles.Cart}>
+            <ul className={styles.cartUl}>
+              {state.basket.map((item) => {
+                return <CartItem {...item} key={item.name} />;
+              })}
+              <li className="cartBookingFee">Booking fee: {priceFormatter.format(bookingFee)}</li>
+              <li className="cartTotal">
+                Total:
+                {priceFormatter.format(total + bookingFee)}
+              </li>
+            </ul>
+            <div className={styles.cartButtons}>
+              <Anchor className="greenbuttonOutline" href="../tickets">
+                Tickets
+              </Anchor>
+              <Anchor className="greenbutton" href="../cart/checkout">
+                Checkout
+              </Anchor>
+            </div>
+          </div>
+        ) : (
+          <div className={styles.emptyCart}>
+            <h3>Your Cart is empty</h3>
+            <Anchor className="greenbutton" href="../tickets">
               Tickets
             </Anchor>
-            <Anchor className="greenbutton" href="../cart/checkout">
-              Checkout
-            </Anchor>
           </div>
-        </div>
-      ) : (
-        <div className={styles.emptyCart}>
-          <h3>Your Cart is empty</h3>
-          <Anchor className="greenbutton" href="../tickets">
-            Tickets
-          </Anchor>
-        </div>
-      )}
+        )}
+      </div>
     </>
   );
 }

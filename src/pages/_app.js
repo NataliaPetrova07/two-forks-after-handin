@@ -19,9 +19,7 @@ export default function App({ Component, pageProps }) {
               font-family: ${space_grotesk.style.fontFamily};
             }
           `}</style>
-          <div className="wrapper">
-            <Component {...pageProps} />
-          </div>
+          <Component {...pageProps} />
         </Layout>
       </StoreProvider>
     </>

@@ -144,73 +144,75 @@ function CheckoutForm() {
       <Head>
         <title>Checkout</title>
       </Head>
-      {paymentCompleted ? (
-        <div className={styles.confirmation}>
-          <Image src={checkmark.src} width={80} height={80} alt="foofest logo" priority />
+      <div className="wrapper">
+        {paymentCompleted ? (
+          <div className={styles.confirmation}>
+            <Image src={checkmark.src} width={80} height={80} alt="foofest logo" priority />
+            <div>
+              <h2>Thank you for your purchase</h2>
+              <p>You will receive a confirmation email shortly</p>
+            </div>
+          </div>
+        ) : (
           <div>
-            <h2>Thank you for your purchase</h2>
-            <p>You will receive a confirmation email shortly</p>
-          </div>
-        </div>
-      ) : (
-        <div>
-          <Hero title="Checkout" />
-          <div className={styles.checkoutwrapper}>
-            <form onSubmit={submitted} ref={theForm}>
-              <div className={styles.formcontrol}>
-                <h2>Ticket holders</h2>
-                {isRegularIncluded ? (
+            <Hero title="Checkout" />
+            <div className={styles.checkoutwrapper}>
+              <form onSubmit={submitted} ref={theForm}>
+                <div className={styles.formcontrol}>
+                  <h2>Ticket holders</h2>
+                  {isRegularIncluded ? (
+                    <fieldset>
+                      <legend>Regular Ticket</legend>
+                      <RegularTicketInput />
+                    </fieldset>
+                  ) : null}
+                  {isVIPIncluded ? (
+                    <fieldset>
+                      <legend>VIP Ticket</legend>
+                      <VIPTicketInput />
+                    </fieldset>
+                  ) : null}
+                  <h2>Billing info</h2>
                   <fieldset>
-                    <legend>Regular Ticket</legend>
-                    <RegularTicketInput />
+                    <label htmlFor="billing_name">Full Name</label>
+                    <input required type="text" name="billing_name" id="billing_name" />
+                    <label htmlFor="email">Email</label>
+                    <input required type="email" name="email" id="email" />
+                    <label htmlFor="phone">Phone number</label>
+                    <input required type="tel" name="phone" id="phone" />
+                    <label htmlFor="street">Address</label>
+                    <input required type="text" name="street" id="street" />
+                    <label htmlFor="zip">ZIP code</label>
+                    <input required type="text" pattern="^[0-9]+$" title="Please enter only numbers" name="zip" id="zip" minLength="4" maxLength="5" />
+                    <label htmlFor="country">Country</label>
+                    <input required type="text" name="country" id="country" />
                   </fieldset>
-                ) : null}
-                {isVIPIncluded ? (
-                  <fieldset>
-                    <legend>VIP Ticket</legend>
-                    <VIPTicketInput />
-                  </fieldset>
-                ) : null}
-                <h2>Billing info</h2>
-                <fieldset>
-                  <label htmlFor="billing_name">Full Name</label>
-                  <input required type="text" name="billing_name" id="billing_name" />
-                  <label htmlFor="email">Email</label>
-                  <input required type="email" name="email" id="email" />
-                  <label htmlFor="phone">Phone number</label>
-                  <input required type="tel" name="phone" id="phone" />
-                  <label htmlFor="street">Address</label>
-                  <input required type="text" name="street" id="street" />
-                  <label htmlFor="zip">ZIP code</label>
-                  <input required type="text" pattern="^[0-9]+$" title="Please enter only numbers" name="zip" id="zip" minLength="4" maxLength="5" />
-                  <label htmlFor="country">Country</label>
-                  <input required type="text" name="country" id="country" />
-                </fieldset>
-                <h2>Payment</h2>
-                <Radio disabled>bank transfer</Radio>
-                <Radio checked>by card</Radio>
-                <PaymentForm />
-                <button className="greenbutton" type="submit" onClick={placeOrder}>
-                  Confirm and Pay
-                </button>
-              </div>
-            </form>
-            <aside className={styles.checkoutCart}>
-              <h2 className={styles.h2CheckoutCart}>Cart</h2>
-              <ul>
-                {basket.map((item) => {
-                  return <CartItemCheckout {...item} key={item.name} />;
-                })}
-                <li className="checkoutBookingFee">Booking fee: {priceFormatter.format(bookingFee)}</li>
-                <li className="checkoutTotal">Total: {priceFormatter.format(totalPlusFee)}</li>
-              </ul>
-              <Anchor className="greenbutton" href="../cart">
-                Edit Cart
-              </Anchor>
-            </aside>
+                  <h2>Payment</h2>
+                  <Radio disabled>bank transfer</Radio>
+                  <Radio checked>by card</Radio>
+                  <PaymentForm />
+                  <button className="greenbutton" type="submit" onClick={placeOrder}>
+                    Confirm and Pay
+                  </button>
+                </div>
+              </form>
+              <aside className={styles.checkoutCart}>
+                <h2 className={styles.h2CheckoutCart}>Cart</h2>
+                <ul>
+                  {basket.map((item) => {
+                    return <CartItemCheckout {...item} key={item.name} />;
+                  })}
+                  <li className="checkoutBookingFee">Booking fee: {priceFormatter.format(bookingFee)}</li>
+                  <li className="checkoutTotal">Total: {priceFormatter.format(totalPlusFee)}</li>
+                </ul>
+                <Anchor className="greenbutton" href="../cart">
+                  Edit Cart
+                </Anchor>
+              </aside>
+            </div>
           </div>
-        </div>
-      )}
+        )}
+      </div>
     </>
   );
 }
