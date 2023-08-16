@@ -181,9 +181,9 @@ function CheckoutForm() {
                     <label htmlFor="phone">Phone number</label>
                     <input required type="tel" name="phone" id="phone" />
                     <label htmlFor="street">Address</label>
-                    <input required type="text" name="street" id="street" />
+                    <input required type="number" name="street" id="street" />
                     <label htmlFor="zip">ZIP code</label>
-                    <input required type="text" pattern="^[0-9]+$" title="Please enter only numbers" name="zip" id="zip" minLength="4" maxLength="5" />
+                    <input required type="number" pattern="^[0-9]+$" title="Please enter only numbers" name="zip" id="zip" minLength="4" maxLength="5" />
                     <label htmlFor="country">Country</label>
                     <input required type="text" name="country" id="country" />
                   </fieldset>
